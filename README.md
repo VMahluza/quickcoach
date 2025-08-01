@@ -100,3 +100,12 @@ cd ..
 > * ```git pull``` (inside a submodule) gets the latest code from the submodule’s own branch.
 
 > * If the main repo was updated by your teammate to point to newer commits, you can just do a top-level pull with ```--recurse-submodules```.
+
+### 💡 Tip
+> If you're working with branches in submodules (not pinned commits), you can set this up to always track latest like this:
+
+```bash
+git config -f .gitmodules submodule.backend.update remote
+git config -f .gitmodules submodule.frontend.update remote
+git submodule update --remote
+```
