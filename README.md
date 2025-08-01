@@ -109,3 +109,27 @@ git config -f .gitmodules submodule.backend.update remote
 git config -f .gitmodules submodule.frontend.update remote
 git submodule update --remote
 ```
+
+## COMMON ISSUES - 🧯 Submodules not up-to-date after cloning
+> After cloning, submodules are locked to a specific commit. So unless the main repo was updated to reference newer submodule commits, your submodules will appear outdated.
+
+### ✅ Solutions
+#### Update main repo to track submodule HEADs (optional for future)
+> Tell Git to track remote HEAD for submodules
+```bash
+git config -f .gitmodules submodule.backend.update remote
+git config -f .gitmodules submodule.frontend.update remote
+```
+> Now update to the latest commits in both submodules
+```bash
+git submodule update --remote
+```
+> Then commit the updated submodule references in the main repo:
+
+```bash
+git add backend frontend
+git commit -m "Updated submodules to latest commits"
+git push origin main
+```
+> From now on, git submodule update --remote will pull latest from default branches of submodules.
+
